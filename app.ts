@@ -147,29 +147,29 @@ console.log("Hello TypeScript");
   
 //   let combineValues2 : (a:number, b:number)=> number
 
-/--------------------
+//---------------------------------------
 
-function addAndHandle (n1:number, n2:number, cb:(num:number)=> void){
-  const result = n1 + n2
-  cb(result)
-}
+// function addAndHandle (n1:number, n2:number, cb:(num:number)=> void){
+//   const result = n1 + n2
+//   cb(result)
+// }
 
-addHandle(10, 20, (result)=>{console.log(result)}); //30
+// addAndHandle(10, 20, (result)=>{console.log(result)}); //30
 
-//---------------------
-let userInput : unknown;
-let userName : string;
+//----------------------------------------
+// let userInput : unknown;
+// let userName : string;
 
-userInput = 4;
-userName = "John";
-//userName = userInput //Error
+// userInput = 4;
+// userName = "John";
+// //userName = userInput //Error
 
-//---------------------
-function generateError(message:string, code:number):never {
-  throw {message:message, errorCode:code}
-}
+//----------------------------------------
+// function generateError(message:string, code:number):never {
+//   throw {message:message, errorCode:code}
+// }
 
-const errResult = generateError("An error has occured", 400);
-console.log(errResult) 
-//Gives nothing. No null, no undefined but nothing. Therefore we add the type never to func.
-//void is another opt we could use, but never describes it better
+// const errResult = generateError("An error has occured", 400);
+// console.log(errResult) 
+// //Gives nothing. No null, no undefined but nothing. Therefore we add the type never to func.
+// //void is another opt we could use, but never describes it better
