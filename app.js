@@ -95,18 +95,42 @@ console.log("Hello TypeScript");
 // combine("30","26","as-number"); //56
 // combine("Max","Anna","as-text"); //MaxAnna
 //-----------VOID,UNDEFINED,FUNCTION TYPES-----------
-function printResult1(num) {
-    console.log('Result ' + num);
-    return;
+// function printResult1(num:number): undefined {
+//     console.log('Result '+ num)
+//     return
+//   }
+//   printResult1(1);
+//   //void is the general use for functions that does not return anything => console will give undefined
+//   function printResult2(num:number):void {
+//     console.log('Result '+ num)
+//   }
+//   printResult2(2);
+//   function add(n1:number, n2:number) { 
+//       return n1 + n2 
+//     }
+//   let combineValues1 : Function;
+//   combineValues1 = add;
+//   //combineValues = 5; //Error
+//   //if we combineValues = printResult; TS will not complain. But we dont want that.
+//   //So we should re-define it
+//   let combineValues2 : (a:number, b:number)=> number
+/--------------------;
+function addAndHandle(n1, n2, cb) {
+    var result = n1 + n2;
+    cb(result);
 }
-//void is the general use for functions that does not return anything => console will give undefined
-function printResult2(num) {
-    console.log('Result ' + num);
+addHandle(10, 20, function (result) { console.log(result); }); //30
+//---------------------
+var userInput;
+var userName;
+userInput = 4;
+userName = "John";
+//userName = userInput //Error
+//---------------------
+function generateError(message, code) {
+    throw { message: message, errorCode: code };
 }
-function add(n1, n1) { return n1 + n2; }
-var combineValues1;
-combineValues1 = add;
-//combineValues = 5; //Error
-//if we combineValues = printResult; TS will not complain. But we dont want that.
-//So we should re-define it
-var combineValues2;
+var errResult = generateError("An error has occured", 400);
+console.log(errResult);
+//Gives nothing. No null, no undefined but nothing. Therefore we add the type never to func.
+//void is another opt we could use, but never describes it better

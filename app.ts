@@ -121,24 +121,55 @@ console.log("Hello TypeScript");
 
 //-----------VOID,UNDEFINED,FUNCTION TYPES-----------
 
-function printResult1(num:number): undefined {
-    console.log('Result '+ num)
-    return
-  }
+// function printResult1(num:number): undefined {
+//     console.log('Result '+ num)
+//     return
+//   }
   
-  //void is the general use for functions that does not return anything => console will give undefined
-  function printResult2(num:number): void {
-    console.log('Result '+ num)
-  }
+//   printResult1(1);
+//   //void is the general use for functions that does not return anything => console will give undefined
+//   function printResult2(num:number):void {
+//     console.log('Result '+ num)
+//   }
+//   printResult2(2);
   
-  function add(n1:number, n1:number) { return n1 + n2 }
+//   function add(n1:number, n2:number) { 
+//       return n1 + n2 
+//     }
   
-  let combineValues1 : Function;
+//   let combineValues1 : Function;
   
-  combineValues1 = add;
-  //combineValues = 5; //Error
+//   combineValues1 = add;
+//   //combineValues = 5; //Error
   
-  //if we combineValues = printResult; TS will not complain. But we dont want that.
-  //So we should re-define it
+//   //if we combineValues = printResult; TS will not complain. But we dont want that.
+//   //So we should re-define it
   
-  let combineValues2 : (a:number, b:number)=> number
+//   let combineValues2 : (a:number, b:number)=> number
+
+/--------------------
+
+function addAndHandle (n1:number, n2:number, cb:(num:number)=> void){
+  const result = n1 + n2
+  cb(result)
+}
+
+addHandle(10, 20, (result)=>{console.log(result)}); //30
+
+//---------------------
+let userInput : unknown;
+let userName : string;
+
+userInput = 4;
+userName = "John";
+//userName = userInput //Error
+
+//---------------------
+function generateError(message:string, code:number):never {
+  throw {message:message, errorCode:code}
+}
+
+const errResult = generateError("An error has occured", 400);
+console.log(errResult) 
+//Gives nothing. No null, no undefined but nothing. Therefore we add the type never to func.
+//void is another opt we could use, but never describes it better
